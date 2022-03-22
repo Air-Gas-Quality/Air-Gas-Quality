@@ -55,7 +55,7 @@ then, R(s) = V(s) / I(s).
 
 4) Suggested Code : 
 
-```c
+```cxx
 struct GasLevelRange {
    public:
       float startValue = 0.0f;
