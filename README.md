@@ -92,6 +92,7 @@ int main() {
     // save the calibration value)
     if (isCalibrating && !(memory->hasData())) {
       memory->save(resistivity);
+      isCalibrating = false;
     }
     // calculate the Rs/Ro
     float graphRatio = resistivity / memory->getValue();
