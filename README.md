@@ -80,8 +80,6 @@ static const float SOURCE_CURRENT = 0.3f;
 // 20 kOhm load resistance
 static const float LOAD_RESISTANCE = 20000;
 
-
-
 float& getResistivity(float& current, voltaile uint10_t& potentiometerValue) {
       // Value         : Max
       // potentioValue : 1023 Dec
