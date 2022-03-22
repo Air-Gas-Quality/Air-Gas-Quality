@@ -8,3 +8,42 @@
 ## Environmental Analysis : 
 - https://www.airnow.gov/aqi-and-health/
 - [aqi-technical-assistance-document-sept2018.pdf](https://github.com/Air-Gas-Quality/Air-Gas-Quality/files/8318367/aqi-technical-assistance-document-sept2018.pdf)
+
+## MQ-135 Cracking Datasheet : 
+
+1) Basic Functionality : 
+---> Potentiometer (SnO2 -- Semiconductor). 
+---> Gases ---> Voltage increases/Resistivity decreases.
+
+
+2) What we want to find ? 
+- We want to find the Rs (Sensitivity resistance) in the fresh clean air (calibration) and 
+in various gaseous statuses.
+- Then, we want to find the ratio `Rs/Ro`; where `Rs : Sensitivity Resistance in various gaseous statuses`, `Ro = Original Resistance in fresh air`.
+- Then, we plug the ratio into the graph from the datasheet to find the possible corresponding gas : 
+
+
+
+Recall; `Rs/Ro` = 1.5
+then : 
+
+
+3) Suggested Code : 
+```c
+// max voltage 
+static const float MAX_VOLTAGE = 5.0;
+
+// analogValue = [0, 1023] (Decimal Encoded value) = [0V, 5.0V] (Real Voltage)
+voltaile uint10_t potentiometerValue = analogRead(A0); // 5 (0000000101)
+
+// convert to percentage 
+const float rationalValue = potentiometerValue / 1023f; 
+
+// convert to voltage 
+const float conductivity = rationalValue * MAX_VOLTAGE;  
+
+// get resistivity
+const float resistivity = conductivity / I (avometer);   
+```
+
+
