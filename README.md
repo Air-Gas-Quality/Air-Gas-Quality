@@ -17,12 +17,15 @@
 
 
 2) What we want to find ? 
-- We want to find the Rs (Sensitivity resistance) in the fresh clean air (calibration) and 
-in various gaseous statuses.
+- We want to find the Rs (Sensitivity resistance) in the fresh clean air (calibration) in 24 hrs, then save the average value.
+- Measure Rs in various gaseous states.
+- Ro is the R-original which represents the calibrated sensor value when connected in parallel with RL = 20 kOhms and T = 20 deg C.
 - Then, we want to find the ratio `Rs/Ro`; where `Rs : Sensitivity Resistance in various gaseous statuses`, `Ro = Original Resistance in fresh air`.
-- Then, we plug the ratio into the graph from the datasheet to find the possible corresponding gas : 
+- Then, we want to plug the ratio into the graph from the datasheet to find the possible corresponding gas : 
 
 ![MQ-135](https://user-images.githubusercontent.com/60224159/159438596-55ff8d4f-c548-4b93-8070-c7d9e8996670.png)
+
+### Notice : All gases can be detected when Rs/Ro > 1, but at very low concentrations which states that the device may misbehave at this point.???
 
 - Example : 
 ### Recall; `Rs/Ro` = 0.9;
@@ -53,7 +56,7 @@ static const float SOURCE_CURRENT = 0.3f;
 // 20 kOhm load resistance
 static const float LOAD_RESISTANCE = 20000;
 
-float getResistivity(float& current, voltaile uint10_t potentiometerValue) {
+float& getResistivity(float& current, voltaile uint10_t& potentiometerValue) {
       // convert to percentage 
       const float rationalValue = potentiometerValue / 1023f; 
 
@@ -66,7 +69,7 @@ float getResistivity(float& current, voltaile uint10_t potentiometerValue) {
       return resistivity;
 }
 
-float getSensorCurrent(volatile uint10_t& potentiometerValue) {
+float& getSensorCurrent(volatile uint10_t& potentiometerValue) {
     // calculate I(s)
     float loadCurrent = potentiometerValue / LOAD_RESISTANCE;
     float sensorCurrent = SOURCE_CURRENT - loadCurrent;
@@ -93,5 +96,3 @@ int main() {
   return 0;
 }
 ```
-
-
