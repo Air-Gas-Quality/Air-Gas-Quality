@@ -28,23 +28,32 @@ in various gaseous statuses.
 ### Recall; `Rs/Ro` = 0.9;
 ### then : 
 The Air Quality state is `moderate` and most probable harmful gases that may lead to this resistivity are : 
-1) Acetona @ 50 ppm.
-2) Toleuon @ 70 ppm.
-3) Alcohol @ 100 ppm.
-4) Ammonia @ 100-150 ppm.
-5) Co2 @ 150-180 ppm.
+      1) Acetona @ 50 ppm.
+      2) Toleuon @ 70 ppm.
+      3) Alcohol @ 100 ppm.
+      4) Ammonia @ 100-150 ppm.
+      5) Co2 @ 150-180 ppm.
+
+4) Circuit : 
+![image](https://user-images.githubusercontent.com/60224159/159455758-84ae0871-1c89-4de2-8568-1a1afeb8a56c.png)
+
+Connecting RL (load resistance) in parallel with the Rs to load the current onto the sensor part (increasing the senstivity of the sensor).
+
+then, I(s) = I(total) - I(load) = I(cc) - V(s)/R(L).
+
+then, R(s) = V(s) / I(s).
 
 3) Suggested Code : 
 ```c
 bool isCalibrating = true;
 const Memory* memory = new Memory();
 // max voltage 
-static const float MAX_VOLTAGE = 5.0;
+static const float MAX_VOLTAGE = 5.0f;
+static const float SOURCE_CURRENT = 0.3f; 
+// 20 kOhm load resistance
+static const float LOAD_RESISTANCE = 20000;
 
-float getResistivity(float current) {
-      // analogValue = [0, 1023] (Decimal Encoded value) = [0V, 5.0V] (Real Voltage)
-      voltaile uint10_t potentiometerValue = analogRead(A0); // 5 (0000000101)
-
+float getResistivity(float& current, voltaile uint10_t potentiometerValue) {
       // convert to percentage 
       const float rationalValue = potentiometerValue / 1023f; 
 
@@ -52,12 +61,26 @@ float getResistivity(float current) {
       const float conductivity = rationalValue * MAX_VOLTAGE;  
 
       // get resistivity
-      const float resistivity = conductivity / current;   
+      float resistivity = conductivity / current;   
+      
+      return resistivity;
+}
+
+float getSensorCurrent(volatile uint10_t& potentiometerValue) {
+    // calculate I(s)
+    float loadCurrent = potentiometerValue / LOAD_RESISTANCE;
+    float sensorCurrent = SOURCE_CURRENT - loadCurrent;
+    return sensorCurrent;
 }
 
 int main() {
-    float resistivity = getResistivity(1);
-    // save the calibration value
+    // analogValue = [0, 1023] (Decimal Encoded value) = [0V, 5.0V] (Real Voltage) = [0000000000, 1111111111] (in 10-bit binary expression).
+    voltaile uint10_t potentiometerValue = analogRead(A0);
+    // sensor current
+    float sensorCurrent = getSensorCurrent(potentiometerValue);
+    // get the resistivity
+    float resistivity = getResistivity(potentiometerValue, sensorCurrent);
+    // save the calibration value)
     if (isCalibrating && !(memory->hasData())) {
       memory->save(resistivity);
     }
