@@ -56,6 +56,22 @@ then, R(s) = V(s) / I(s).
 4) Suggested Code : 
 
 ```c
+struct GasLevelRange {
+   public:
+      float startValue = 0.0f;
+      float endValue = 0.0f;
+};
+
+struct GasLevels {
+   public:
+      GasLevelRange co2Levels;
+      GasLevelRange coLevels;
+      GasLevelRange alcoholLevels;
+      GasLevelRange ammoniaLevels;
+      GasLevelRange tolueneLevels;
+      GasLevelRange acetoneLevels;
+};
+
 bool isCalibrating = true;
 const Memory* memory = new Memory();
 // max voltage 
@@ -63,6 +79,8 @@ static const float MAX_VOLTAGE = 5.0f;
 static const float SOURCE_CURRENT = 0.3f; 
 // 20 kOhm load resistance
 static const float LOAD_RESISTANCE = 20000;
+
+
 
 float& getResistivity(float& current, voltaile uint10_t& potentiometerValue) {
       // convert to percentage 
@@ -84,8 +102,52 @@ float& getSensorCurrent(volatile uint10_t& potentiometerValue) {
     return sensorCurrent;
 }
 
+void plugIntoGraph(float& graphRatio) {
+     const GasLevels* gasLevels = new GasLevels();
+     if (graphRatio < 1) {
+           // lies between 0.9 and 1
+           if (graphRatio >= 0.9) {
+                  // possible different gases concentrations (ppm) 
+                  // at current resistivity
+
+                  // possible co2 levels at this resistivity
+                  gasLevels->co2Levels.startValue = 110f;
+                  gasLevels->co2Levels.endValue = 175f;
+
+                  // possible NH4 levels
+                  gasLevels->ammoniaLevels.startValue = 100f; 
+                  gasLevels->ammoniaLevels.endValue = 140;
+
+                  // possible alcohol levels
+                  gasLevels->alcoholLevels.startValue = 80f; 
+                  gasLevels->alcoholLevels.endValue = 110f;
+
+                  //....etc....
+                  
+            // lies between 0.9 and 1
+           } else if (graphRatio >= 0.8) {
+                  // possible co2 levels at this resistivity
+                  gasLevels->co2Levels.startValue = 160f;
+                  gasLevels->co2Levels.endValue = 200f;
+
+                  // possible NH4 levels
+                  gasLevels->ammoniaLevels.startValue = 140f; 
+                  gasLevels->ammoniaLevels.endValue = 180;
+
+                  // possible alcohol levels
+                  gasLevels->alcoholLevels.startValue = 110f; 
+                  gasLevels->alcoholLevels.endValue = 160f;
+                  
+                  //....etc....
+           }
+     }
+
+}
+
 int main() {
-    // analogValue = [0, 1023] (Decimal Encoded value) = [0V, 5.0V] (Real Voltage) = [0000000000, 1111111111] (in 10-bit binary expression).
+    // analogValue = [0, 1023] (Decimal Encoded value) 
+    // = [0V, 5.0V] (Real Voltage) 
+    // = [0000000000, 1111111111] (in 10-bit binary expression).
     voltaile uint10_t potentiometerValue = analogRead(A0);
     // sensor current
     float sensorCurrent = getSensorCurrent(potentiometerValue);
