@@ -31,13 +31,15 @@
 ### Recall; `Rs/Ro` = 0.9;
 ### then : 
 The Air Quality state is `moderate` and most probable harmful gases that may lead to this resistivity are : 
-      1) Acetona @ 50 ppm.
-      2) Toleuon @ 70 ppm.
-      3) Alcohol @ 100 ppm.
-      4) Ammonia @ 100-150 ppm.
-      5) Co2 @ 150-180 ppm.
+      1) Acetona @ 50 ppm. </br>
+      2) Toleuon @ 70 ppm. </br>
+      3) Alcohol @ 100 ppm. </br>
+      4) Ammonia @ 100-150 ppm. </br>
+      5) Co2 @ 150-180 ppm. </br>
+      
 
-4) Circuit : 
+3) Circuit : 
+
 ![image](https://user-images.githubusercontent.com/60224159/159455758-84ae0871-1c89-4de2-8568-1a1afeb8a56c.png)
 
 Connecting RL (load resistance) in parallel with the Rs to load the current onto the sensor part (increasing the senstivity of the sensor).
@@ -46,7 +48,8 @@ then, I(s) = I(total) - I(load) = I(cc) - V(s)/R(L).
 
 then, R(s) = V(s) / I(s).
 
-3) Suggested Code : 
+4) Suggested Code : 
+
 ```c
 bool isCalibrating = true;
 const Memory* memory = new Memory();
