@@ -28,9 +28,12 @@
 ### Notice : All gases can be detected when Rs/Ro > 1, but at very low concentrations which states that the device may misbehave at this point.???
 
 - Example : 
+
 ### Recall; `Rs/Ro` = 0.9;
+
 ### then : 
-The Air Quality state is `moderate` and most probable harmful gases that may lead to this resistivity are : 
+
+The Air Quality state is `moderate` and most probable harmful gases that may lead to this resistivity are : </br>
       1) Acetona @ 50 ppm. </br>
       2) Toleuon @ 70 ppm. </br>
       3) Alcohol @ 100 ppm. </br>
