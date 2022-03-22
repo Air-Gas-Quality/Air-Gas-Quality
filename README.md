@@ -80,7 +80,7 @@ static const float SOURCE_CURRENT = 0.3f;
 // 20 kOhm load resistance
 static const float LOAD_RESISTANCE = 20000;
 
-float& getResistivity(float& current, voltaile uint10_t& potentiometerValue) {
+float& getResistivity(float& current, volatile uint10_t& potentiometerValue) {
       // Value         : Max
       // potentioValue : 1023 Dec
       // voltage       : 5V
@@ -150,7 +150,7 @@ int main() {
     // analogValue = [0, 1023] (Decimal Encoded value) 
     // = [0V, 5.0V] (Real Voltage) 
     // = [0000000000, 1111111111] (in 10-bit binary expression).
-    voltaile uint10_t potentiometerValue = analogRead(A0);
+    volatile uint10_t potentiometerValue = analogRead(A0);
     // sensor current
     float sensorCurrent = getSensorCurrent(potentiometerValue);
     // get the resistivity
