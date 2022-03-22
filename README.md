@@ -8,6 +8,8 @@
 ## Environmental Analysis : 
 - https://www.airnow.gov/aqi-and-health/
 - [aqi-technical-assistance-document-sept2018.pdf](https://github.com/Air-Gas-Quality/Air-Gas-Quality/files/8318367/aqi-technical-assistance-document-sept2018.pdf)
+- https://www.pranaair.com/blog/what-is-air-quality-index-aqi-and-its-calculation/
+- https://www.airnow.gov/aqi/aqi-calculator-concentration/
 
 ## MQ-135 Cracking Datasheet : 
 
