@@ -80,6 +80,10 @@ static const float SOURCE_CURRENT = 0.3f;
 // 20 kOhm load resistance
 static const float LOAD_RESISTANCE = 20000;
 
+float& getResistivity(float&, volatile uint10_t&);
+float& getSensorCurrent(volatile uint10_t&);
+void plugIntoGraph(float&);
+
 float& getResistivity(float& current, volatile uint10_t& potentiometerValue) {
       // Value         : Max
       // potentioValue : 1023 Dec
@@ -143,7 +147,8 @@ void plugIntoGraph(float& graphRatio) {
                   //....etc....
            }
      }
-
+     gasLevels = NULL;
+     delete gasLevels;
 }
 
 int main() {
