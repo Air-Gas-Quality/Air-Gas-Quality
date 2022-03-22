@@ -83,6 +83,10 @@ static const float LOAD_RESISTANCE = 20000;
 
 
 float& getResistivity(float& current, voltaile uint10_t& potentiometerValue) {
+      // Value         : Max
+      // potentioValue : 1023 Dec
+      // voltage       : 5V
+      // then, voltage = (potentioValue / 1023f) * 5.0V.
       // convert to percentage 
       const float rationalValue = potentiometerValue / 1023f; 
 
