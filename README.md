@@ -36,20 +36,39 @@ The Air Quality state is `moderate` and most probable harmful gases that may lea
 
 3) Suggested Code : 
 ```c
+bool isCalibrating = true;
+const Memory* memory = new Memory();
 // max voltage 
 static const float MAX_VOLTAGE = 5.0;
 
-// analogValue = [0, 1023] (Decimal Encoded value) = [0V, 5.0V] (Real Voltage)
-voltaile uint10_t potentiometerValue = analogRead(A0); // 5 (0000000101)
+float getResistivity(float current) {
+      // analogValue = [0, 1023] (Decimal Encoded value) = [0V, 5.0V] (Real Voltage)
+      voltaile uint10_t potentiometerValue = analogRead(A0); // 5 (0000000101)
 
-// convert to percentage 
-const float rationalValue = potentiometerValue / 1023f; 
+      // convert to percentage 
+      const float rationalValue = potentiometerValue / 1023f; 
 
-// convert to voltage 
-const float conductivity = rationalValue * MAX_VOLTAGE;  
+      // convert to voltage 
+      const float conductivity = rationalValue * MAX_VOLTAGE;  
 
-// get resistivity
-const float resistivity = conductivity / I (avometer);   
+      // get resistivity
+      const float resistivity = conductivity / current;   
+}
+
+int main() {
+    float resistivity = getResistivity(1);
+    // save the calibration value
+    if (isCalibrating && !(memory->hasData())) {
+      memory->save(resistivity);
+    }
+    // calculate the Rs/Ro
+    float graphRatio = resistivity / memory->getValue();
+    
+    // plug into the graph -- mapping the values
+    plugIntoGraph(graphRatio);
+    
+  return 0;
+}
 ```
 
 
