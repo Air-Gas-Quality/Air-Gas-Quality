@@ -22,11 +22,17 @@ in various gaseous statuses.
 - Then, we want to find the ratio `Rs/Ro`; where `Rs : Sensitivity Resistance in various gaseous statuses`, `Ro = Original Resistance in fresh air`.
 - Then, we plug the ratio into the graph from the datasheet to find the possible corresponding gas : 
 
+![MQ-135](https://user-images.githubusercontent.com/60224159/159438596-55ff8d4f-c548-4b93-8070-c7d9e8996670.png)
 
-
-Recall; `Rs/Ro` = 1.5
-then : 
-
+- Example : 
+### Recall; `Rs/Ro` = 0.9;
+### then : 
+The Air Quality state is `moderate` and most probable harmful gases that may lead to this resistivity are : 
+1) Acetona @ 50 ppm.
+2) Toleuon @ 70 ppm.
+3) Alcohol @ 100 ppm.
+4) Ammonia @ 100-150 ppm.
+5) Co2 @ 150-180 ppm.
 
 3) Suggested Code : 
 ```c
