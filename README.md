@@ -1,5 +1,9 @@
 # Materials : 
 
+## More about Google Solution Challenge : 
+- [Google Developer Student Clubs Solution Challenge 2022 - Submission.pdf](https://github.com/Air-Gas-Quality/Air-Gas-Quality/files/8337169/Google.Developer.Student.Clubs.Solution.Challenge.2022.-.Submission.pdf)
+- [The 17 Sustainable Development Goals of the United Nations  _  2022 Solution Challenge  _  Google Developers.pdf](https://github.com/Air-Gas-Quality/Air-Gas-Quality/files/8337170/The.17.Sustainable.Development.Goals.of.the.United.Nations._.2022.Solution.Challenge._.Google.Developers.pdf)
+
 ## MQ-135 and other gas sensors :
 - [MQ-135 Gas Sensor Pinout, Features, Alternatives, Datasheet & Uses Guide.pdf](https://github.com/Air-Gas-Quality/Air-Gas-Quality/files/8318365/MQ-135.Gas.Sensor.Pinout.Features.Alternatives.Datasheet.Uses.Guide.pdf)
 - https://www.electronicoscaldas.com/datasheet/MQ-135_Hanwei.pdf
