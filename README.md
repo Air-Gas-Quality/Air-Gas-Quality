@@ -60,7 +60,7 @@ then, I(s) = I(total) - I(load) = I(cc) - V(s)/R(L).
 
 then, R(s) = V(s) / I(s).
 
-4) Suggested Code : 
+## Suggested Code : 
 
 ```cxx
 struct GasLevelRange {
